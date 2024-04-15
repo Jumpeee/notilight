@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "package:notilight/widgets/switch_screen/switch_button.dart";
+import "package:notilight/ui/widgets/switch_screen/switch_button.dart";
 
 class SwitchScreen extends ConsumerWidget {
   const SwitchScreen({super.key});

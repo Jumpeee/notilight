@@ -1,14 +1,18 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-final _modeProvider = StateProvider<bool>((ref) => false);
+import "package:notilight/ui/viewmodels/switch_screen_viewmodel.dart";
+
+final _viewModelProvider = ChangeNotifierProvider(
+  (ref) => SwitchScreenViewModel(),
+);
 
 class SwitchButton extends ConsumerWidget {
   const SwitchButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isOn = ref.watch(_modeProvider);
+    final viewModel = ref.watch(_viewModelProvider);
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -17,7 +21,9 @@ class SwitchButton extends ConsumerWidget {
         child: ElevatedButton(
           style: ButtonStyle(
             overlayColor: MaterialStateProperty.all(
-              isOn ? Colors.red : Colors.green,
+              viewModel.isOn
+                  ? Colors.redAccent
+                  : const Color.fromARGB(255, 39, 255, 125),
             ),
             splashFactory: InkRipple.splashFactory,
             elevation: MaterialStateProperty.all(20),
@@ -28,9 +34,9 @@ class SwitchButton extends ConsumerWidget {
               ),
             ),
           ),
-          onPressed: () => ref.read(_modeProvider.notifier).state = !isOn,
+          onPressed: () => ref.read(_viewModelProvider).switchMode(),
           child: Text(
-            isOn ? "ON" : "OFF",
+            viewModel.isOn ? "ON" : "OFF",
             style: const TextStyle(
               color: Colors.black,
               fontSize: 32,

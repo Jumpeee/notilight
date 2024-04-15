@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "package:notilight/screens/switch_screen.dart";
+import "package:notilight/ui/screens/switch_screen.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
